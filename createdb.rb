@@ -6,7 +6,7 @@ DB = Sequel.connect "sqlite://#{Dir.pwd}/development.sqlite3"          #
 # Database schema - this should reflect your domain model
 DB.create_table! :events do
   primary_key :id
-  String :title
+  String :name
   String :description, text: true
   String :date
   String :location
@@ -20,15 +20,17 @@ DB.create_table! :rsvps do
   String :comments, text: true
 end
 
+
+
 # Insert initial (seed) data
 events_table = DB.from(:events)
 
-events_table.insert(title: "Bacon Burger Taco Fest", 
+events_table.insert(name: "Bacon Burger Taco Fest", 
                     description: "Here we go again bacon burger taco fans, another Bacon Burger Taco Fest is here!",
                     date: "June 21",
                     location: "Kellogg Global Hub")
 
-events_table.insert(title: "Kaleapolooza", 
+events_table.insert(name: "Kaleapolooza", 
                     description: "If you're into nutrition and vitamins and stuff, this is the event for you.",
                     date: "July 4",
                     location: "Nowhere")
